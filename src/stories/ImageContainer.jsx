@@ -31,10 +31,10 @@ const Container = styled.article`
   }
 `;
 
-export default function ImgContainer({ width, height, src }) {
+export default function ImgContainer({ width, height, id, src, alt }) {
   return (
     <Container width={width} height={height}>
-      <img src={src}></img>
+      <img src={src.original} alt={alt}></img>
       <div>
         <span className="title">사진 제목</span>
         <span className="others">즐겨 찾기</span>
