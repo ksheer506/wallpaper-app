@@ -5,7 +5,7 @@ import Header from './components/Header';
 import { useEffect, useState } from 'react';
 
 function App() {
-  const [Images, setImages] = useState([]);
+  const [images, setImages] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -17,9 +17,13 @@ function App() {
           authorization: "563492ad6f91700001000001ea3a86ac3adb417dbe8fdfc16dfdbdc3"
         }
       })
-      const res = await req.json();
 
-      setImages(res.photos);
+      if (req.ok) {
+        const res = await req.json();
+
+        setImages(res.photos);
+        setIsLoading(false);
+      }
     })();
 
   }, [])
@@ -28,8 +32,12 @@ function App() {
     <>
       <Header />
       <main>
-
+        {isLoading ? null :
+          images.map((pic) => <ImgContainer {...pic} width={200} height={200} key={pic.id} />)
+        }
       </main>
+
+
     </>
   );
 }
