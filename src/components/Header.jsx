@@ -10,6 +10,7 @@ const StyledHead = styled.header`
   background-color: white;
   box-shadow: 0px 3px 10px #e6e6e6;
   margin-bottom: 15px;
+  z-index: 1;
 `
 
 export default function Header() {
