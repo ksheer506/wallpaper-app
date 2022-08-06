@@ -18,14 +18,13 @@ const Skelcontainer = styled.div`
   flex-flow: column nowrap;
   row-gap: 10px;
   justify-content: center;
-  
 
   ${(props) =>
     props.width &&
     props.height &&
     css`
-      width: ${props.width}px;
-      height: ${props.height}px;
+      width: ${props.width};
+      height: ${props.height};
     `}
 `;
 
@@ -39,8 +38,8 @@ export const Rectangle = styled.div`
     props.width &&
     props.height &&
     css`
-      width: ${props.width}px;
-      height: ${props.height}px;
+      width: ${props.width};
+      height: ${props.height};
     `}
 
   &::before {
@@ -63,9 +62,9 @@ export const Circle = styled.div`
   ${(props) =>
     props.radius &&
     css`
-      width: ${props.radius}px;
-      height: ${props.radius}px;
-      border-radius: ${props.radius}px;
+      width: ${props.radius};
+      height: ${props.radius};
+      border-radius: ${props.radius};
     `}
 
   &::before {
@@ -91,20 +90,20 @@ const ImgSkelContainer = styled.div`
     props.width &&
     props.height &&
     css`
-      width: ${props.width}px;
-      height: ${props.height}px;
+      width: ${props.width};
+      height: ${props.height};
     `}
 `;
 
 export const ImageSkel = () => {
   return (
-    <>
+    <Skeleton width="auto" height="auto">
       <Rectangle width={200} height={200}></Rectangle>
       <ImgSkelContainer width={200} height={30}>
         <Rectangle width={160} height={30}></Rectangle>
         <Circle radius={30}></Circle>
       </ImgSkelContainer>
-    </>
+    </Skeleton>
   );
 };
 

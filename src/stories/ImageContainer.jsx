@@ -5,19 +5,19 @@ const Container = styled.article`
   flex-flow: column nowrap;
   row-gap: 5px;
   justify-content: center;
-  padding: 15px;
+  padding: 5px;
   background-color: #f8f8f8;
 
   ${(props) =>
     (props.width || props.height) &&
     css`
-      width: ${props.width}px;
-      height: ${props.height}px;
+      width: ${props.width};
+      height: ${props.height};
     `}
 
   & > img {
     width: 90%;
-    height: 80%;
+    height: 90%;
     align-self: center;
   }
   & > div {
@@ -25,18 +25,18 @@ const Container = styled.article`
     justify-content: space-between;
     flex-flow: row nowrap;
 
-    & > .title {
-      font-weight: bold;
+    & > .photographer {
+      font-style: italic;
     }
   }
 `;
 
-export default function ImgContainer({ width, height, src }) {
+export default function ImgContainer({ width, height, photographer, id, src, alt }) {
   return (
     <Container width={width} height={height}>
-      <img src={src}></img>
+      <img src={src.portrait} alt={alt} />
       <div>
-        <span className="title">사진 제목</span>
+        <span className="photographer">{photographer}</span>
         <span className="others">즐겨 찾기</span>
       </div>
     </Container>
