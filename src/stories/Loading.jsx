@@ -1,12 +1,24 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
+function animationDelay(arr) {
+  let style = "";
+
+  for (let i = 2; i <= arr.length; i++) {
+    style += `& span:nth-child(${i}) {
+      animation-delay: ${300 * (i - 1)}ms;
+    }`;
+  }
+
+  return style;
+}
+
 const Dot = styled.span`
   position: relative;
   width: 10px;
   height: 10px;
   border-radius: 20px;
-  animation: pop 1s linear infinite;
+  animation: pop 1.3s linear infinite;
 
   ${(props) =>
     props.colors &&
@@ -35,6 +47,20 @@ const Dot = styled.span`
     `}
 `;
 
+const Button1 = styled.button`
+  width: 50px;
+  height: 50px;
+  background-color: grey;
+
+  ${(props) =>
+    css`
+      background-color: ${props.color};
+      border: 0px;
+      }
+    `}
+`;
+
+
 const StyledLoading = styled.div`
   display: flex;
   justify-content: center;
@@ -44,23 +70,22 @@ const StyledLoading = styled.div`
   height: 50px;
   background-color: rgba(255, 255, 255, 0);
 
-  & span:nth-child(2) {
-    animation-delay: 300ms;
-  }
-  & span:nth-child(3) {
-    animation-delay: 600ms;
-  }
+  /* ${(props) => props.childrenDely} */
+  ${animationDelay([0,0,0])}
 `;
 
 const Loading = ({ colors, number = 3 }) => {
   const dotArr = new Array(number).fill(0);
+  const theme = { colors: { bgGray: "green" } };
 
   return (
-    <StyledLoading>
-      {dotArr.map((el) => (
-        <Dot colors={colors} />
-      ))}
-    </StyledLoading>
+    <>
+      <StyledLoading childrenDely={animationDelay(dotArr)}>
+        {dotArr.map((el, i) => (
+          <Dot colors={colors} key={i} />
+        ))}
+      </StyledLoading>
+    </>
   );
 };
 
