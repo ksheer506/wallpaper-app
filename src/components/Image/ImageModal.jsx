@@ -32,13 +32,13 @@ const Link = styled.a`
   }
 `;
 
-const ImageModal = ({ src, photographer, photographer_url, alt }) => {
+const ImageModal = ({ img, photographer, photographer_url, alt }) => {
   return (
     <Container>
       <h2>
         <Link href={photographer_url}>{photographer}</Link>
       </h2>
-      <Img src={src.original} alt={alt} width="auto" height="90%" />
+      <Img src={img} alt={alt} width="auto" height="90%" />
     </Container>
   );
 };

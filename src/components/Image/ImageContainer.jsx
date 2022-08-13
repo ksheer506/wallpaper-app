@@ -67,7 +67,7 @@ export default function Image({ width, height, photographer, photographer_url, s
     })();
   }, []);
 
-  const modal = { src, photographer, photographer_url, alt };
+  const modal = { img, photographer, photographer_url, alt };
 
   return (
     <Container width={width} height={height}>
