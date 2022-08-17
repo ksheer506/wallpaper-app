@@ -50,7 +50,7 @@ const Container = styled.article`
   }
 `;
 
-export default function Image({ width, height, photographer, photographer_url, src, alt }) {
+export default function Image({ id, width, height, photographer, photographer_url, src, alt }) {
   const [like, setLike] = useState(false);
   const [img, setImg] = useState(null);
   const openModal = useModal();
@@ -67,7 +67,7 @@ export default function Image({ width, height, photographer, photographer_url, s
     })();
   }, []);
 
-  const modal = { img, photographer, photographer_url, alt };
+  const modal = { id, img, photographer, photographer_url, alt };
 
   return (
     <Container width={width} height={height}>
