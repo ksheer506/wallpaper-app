@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
-import Comments from "./Comments.jsx";
+import Comments from "../Comments/Comments.jsx";
 
 const Container = styled.div`
   display: flex;
@@ -69,7 +69,7 @@ const ImageModal = ({ id, img, photographer, photographer_url, alt }) => {
       <h2>
         <Link href={photographer_url}>{photographer}</Link>
       </h2>
-      <Img src={img} alt={alt} width="auto" height="90%" />
+      <Img src={img} alt={alt} width="auto" height="85%" />
       <Comments id={id} comment={comment} setComment={setComment} />
     </Container>
   );
