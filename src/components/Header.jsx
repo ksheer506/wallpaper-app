@@ -1,4 +1,6 @@
 import styled from "styled-components"
+import Login from "./Login";
+import useModal from "./Modal/useModal";
 
 const StyledHead = styled.header`
   width: 100vw;
@@ -13,10 +15,26 @@ const StyledHead = styled.header`
   z-index: 1;
 `
 
+const SButton = styled.button`
+  position: absolute;
+  right: 30px;
+  background-color: white;
+  border: 0px;
+  transition: 0.6s all;
+
+  &:hover {
+    background-color: blanchedalmond;
+    transition: 0.6s all;
+  }
+`;
+
 export default function Header() {
+  const openModal = useModal();
+
   return (
     <StyledHead>
-      <h1>배경화면</h1>
+      <h1>WallPaper</h1>
+      <SButton onClick={() => openModal(<Login />)}>로그인</SButton>
     </StyledHead>
   );
 }
