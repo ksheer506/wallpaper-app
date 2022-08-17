@@ -2,8 +2,6 @@ import './App.css';
 import Image from './components/Image/ImageContainer';
 import Header from './components/Header';
 import { useEffect, useRef, useState } from 'react';
-import Loading from './stories/Loading';
-import ImageSkel from './components/Image/ImageSkel';
 
 const N = 14;
 
@@ -19,12 +17,12 @@ function App() {
       rootMargin: "500px"
     }
     const io = new IntersectionObserver(([e]) => {
+      id.current += N;
       if (e.isIntersecting) {
         const dumArr = new Array(N).fill(0).map((_, i) => id.current + i);
 
         setCurrentPage(prev => prev + 1);
         setImages((prev) => [...prev, ...dumArr]);
-        id.current += N;
       }
     }, options);
 
@@ -42,6 +40,7 @@ function App() {
       )
 
       try {
+        // 
         // "http://localhost:3001/blogs"
         const req = await fetch(`https://api.pexels.com/v1/curated/?page=${currentPage}`, {
           method: "GET",
@@ -68,7 +67,7 @@ function App() {
       }
     })();
 
-    /* return () => controller.abort(); */
+    return () => controller.abort();
   }, [currentPage])
 
   return (
