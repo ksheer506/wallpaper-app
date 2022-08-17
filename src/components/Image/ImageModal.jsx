@@ -1,4 +1,7 @@
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+
+import Comments from "./Comments.jsx";
 
 const Container = styled.div`
   display: flex;
@@ -32,13 +35,42 @@ const Link = styled.a`
   }
 `;
 
-const ImageModal = ({ img, photographer, photographer_url, alt }) => {
+const ImageModal = ({ id, img, photographer, photographer_url, alt }) => {
+  const [comment, setComment] = useState([]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    try {
+      (async () => {
+        const res = await fetch(`http://localhost:4000/pictures/${id}`, {
+          method: "GET",
+          signal: controller.signal,
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+          setComment(data.comments);
+        }
+      })();
+    } catch (e) {
+      console.log("ddddd");
+    }
+
+    return () => controller.abort();
+  }, []);
+
+  
+
+  console.log("Modal 렌더링");
+
   return (
     <Container>
       <h2>
         <Link href={photographer_url}>{photographer}</Link>
       </h2>
       <Img src={img} alt={alt} width="auto" height="90%" />
+      <Comments id={id} comment={comment} setComment={setComment} />
     </Container>
   );
 };
