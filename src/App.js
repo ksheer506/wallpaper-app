@@ -35,10 +35,6 @@ function App() {
     const controller = new AbortController();
 
     (async () => {
-      await new Promise((resolve) =>
-        setTimeout(resolve, 1000)
-      )
-
       try {
         // 
         // "http://localhost:3001/blogs"
@@ -77,7 +73,6 @@ function App() {
         {images.map((pic) => <Image {...pic} width="auto" height="auto" key={pic.id || pic} />)}
       </main>
       <div ref={bottom}></div>
-      {/* <Modal width="600px" height="400px" /> */}
     </>
   );
 }
