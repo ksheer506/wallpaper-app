@@ -1,0 +1,39 @@
+{
+  "pictures": [
+    {
+      "id": "13214082",
+      "comments": [
+        {
+          "uuid": "643tdc3c-3670-41e9-b84b-cb5011ca274a",
+          "username": "tom",
+          "comment": "작가님 팬이에요!!!",
+          "createdAt": 1660715535938
+        },
+        {
+          "uuid": "643cac3c-3670-41e9-b84b-cb5011ca274a",
+          "username": "james",
+          "comment": "어디인가요?",
+          "createdAt": 1660715535938
+        }
+      ]
+    },
+    {
+      "id": 13064584,
+      "comments": [
+        {
+          "uuid": "02300f21-e7d4-42c1-8e83-44a285df352b",
+          "username": "Jane",
+          "comment": "여행 가고 싶네요",
+          "createdAt": 1660716710790
+        },
+        {
+          "uuid": "4dd0ba0a-abfb-429a-a48e-be22eb2e7c42",
+          "username": "tom",
+          "comment": "어디인가요?!",
+          "createdAt": 1660716351130
+        }
+      ]
+    }
+  ],
+  "user-profile": {}
+}
