@@ -64,7 +64,10 @@ const ImageModal = ({ id, img, photographer, photographer_url, alt }) => {
       }
     }
 
-    return () => controller.abort();
+    return () => {
+      console.log("Modal 언마운트");
+      controller.abort();
+    };
   }, []);
 
   console.log("Modal 렌더링");

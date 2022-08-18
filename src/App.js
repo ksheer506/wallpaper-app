@@ -6,7 +6,6 @@ import { API_KEY } from '.';
 
 const N = 14;
 
-
 function App() {
   const [images, setImages] = useState(new Array(N).fill(0).map((_, i) => i));
   const [currentPage, setCurrentPage] = useState(1);
@@ -49,7 +48,7 @@ function App() {
         setImages(prev => {
           const sliced = prev.filter((e) => typeof e !== "number");
 
-          return [...sliced, ...res.photos]
+          return [...sliced, ...res.photos];
         });
       }
       catch (err) {
@@ -61,10 +60,10 @@ function App() {
       }
     })();
 
-    console.log(images);
-
     return () => controller.abort();
-  }, [currentPage])
+  }, [currentPage]);
+
+  console.log(images);
 
   return (
     <>

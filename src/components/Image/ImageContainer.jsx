@@ -50,10 +50,18 @@ const Container = styled.article`
   }
 `;
 
-export default function Image({ id, width, height, photographer, photographer_url, src, alt }) {
+export default function Image({
+  id,
+  width,
+  height,
+  photographer,
+  photographer_url,
+  src,
+  alt,
+}) {
   const [like, setLike] = useState(false);
   const [img, setImg] = useState(null);
-  const openModal = useModal();
+  const openModal = useModal("60%", "65%");
 
   useEffect(() => {
     if (!src) return;
