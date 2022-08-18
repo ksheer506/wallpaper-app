@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { SERVER } from "..";
 
 const Login = () => {
   const [msg, setMsg] = useState("");
@@ -7,19 +8,20 @@ const Login = () => {
 
   const LoginHandler = (e) => {
     e.preventDefault();
+
     const form = {
       id: id.current.value,
       password: password.current.value,
+      keepLoggedin: true,
     };
 
-    console.log(form);
-
     try {
-      fetch("http://localhost:4000/login", {
+      fetch(`${SERVER}/login`, {
         method: "POST",
         body: JSON.stringify(form),
+        credentials: "include",
         headers: {
-          "content-Type": "application/json"
+          "content-Type": "application/json",
         },
       });
     } catch (e) {}
