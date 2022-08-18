@@ -2,8 +2,10 @@ import './App.css';
 import Image from './components/Image/ImageContainer';
 import Header from './components/Header';
 import { useEffect, useRef, useState } from 'react';
+import { API_KEY } from '.';
 
 const N = 14;
+
 
 function App() {
   const [images, setImages] = useState(new Array(N).fill(0).map((_, i) => i));
@@ -41,7 +43,7 @@ function App() {
         const req = await fetch(`https://api.pexels.com/v1/curated/?page=${currentPage}`, {
           method: "GET",
           headers: {
-            authorization: "563492ad6f91700001000001ea3a86ac3adb417dbe8fdfc16dfdbdc3"
+            authorization: API_KEY
           },
           signal: controller.signal
         })

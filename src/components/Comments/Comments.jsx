@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import styled from "styled-components";
 import { v4 as uuid } from "uuid";
+import { SERVER } from "../..";
 import { CommentCont, CommentInfo, EditComment, SButton } from "./style";
 
 const CommentItem = ({ username, comment, createdAt, handleEdit, handleDelete }) => {
@@ -104,7 +105,7 @@ const Comments = ({ id, comment, setComment }) => {
     const updated = [newEntry, ...comment];
 
     try {
-      const res = await fetch(`http://localhost:4000/pictures/${L ? id : ""}`, {
+      const res = await fetch(`${SERVER}/pictures/${L ? id : ""}`, {
         method: L ? "PUT" : "POST",
         signal: controller.signal,
         body: JSON.stringify({ id, comments: updated }),
@@ -134,7 +135,7 @@ const Comments = ({ id, comment, setComment }) => {
     });
 
     try {
-      const res = await fetch(`http://localhost:4000/pictures/${id}`, {
+      const res = await fetch(`${SERVER}/pictures/${id}`, {
         method: "PUT",
         signal: controller.signal,
         body: JSON.stringify({ id, comments: updated }),
@@ -158,7 +159,7 @@ const Comments = ({ id, comment, setComment }) => {
     const updated = comment.filter((e) => e.uuid !== uuid);
 
     try {
-      const res = await fetch(`http://localhost:4000/pictures/${id}`, {
+      const res = await fetch(`${SERVER}/pictures/${id}`, {
         method: "PUT",
         signal: controller.signal,
         body: JSON.stringify({ id, comments: updated }),

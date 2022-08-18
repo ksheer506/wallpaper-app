@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { SERVER } from "../../index.js";
 
 import Comments from "../Comments/Comments.jsx";
 
@@ -43,7 +44,7 @@ const ImageModal = ({ id, img, photographer, photographer_url, alt }) => {
 
     try {
       (async () => {
-        const res = await fetch(`http://localhost:4000/pictures/${id}`, {
+        const res = await fetch(`${SERVER}/pictures/${id}`, {
           method: "GET",
           signal: controller.signal,
         });
@@ -51,16 +52,20 @@ const ImageModal = ({ id, img, photographer, photographer_url, alt }) => {
 
         if (res.ok) {
           setComment(data.comments);
+        } else {
+          throw new Error("Fetch Failed");
         }
       })();
     } catch (e) {
-      console.log("ddddd");
+      if (controller.signal.aborted) {
+        console.log("Fetch Cancelled by Client");
+      } else {
+        console.log(e);
+      }
     }
 
     return () => controller.abort();
   }, []);
-
-  
 
   console.log("Modal 렌더링");
 
