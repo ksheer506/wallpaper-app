@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useAuth } from "../AuthContext";
+import { useAuth } from "./Auth/AuthContext";
 import Login from "./Auth/Login";
 import useModal from "./Modal/useModal";
 

@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { SERVER } from "../..";
-import { useAuth } from "../../AuthContext";
+import { useAuth } from "./AuthContext";
 import { InputForm, SButton, ValidityMsg } from "./LoginStyle";
 
 const Login = () => {
