@@ -1,91 +1,9 @@
 import { useRef, useState } from "react";
-import styled from "styled-components";
 import { v4 as uuid } from "uuid";
 import { SERVER } from "../..";
-import { CommentCont, CommentInfo, EditComment, SButton } from "./style";
+import CommentItem from "./CommentsItem";
+import { InputForm, SubmitButton, SubmitForm, NoComment } from "./style";
 
-const CommentItem = ({ username, comment, createdAt, handleEdit, handleDelete }) => {
-  const [isEdit, setIsEdit] = useState(false);
-  const editComment = useRef(null);
-
-  const onEdit = () => {
-    handleEdit(editComment.current.value);
-    setIsEdit(false);
-  };
-
-  return (
-    <CommentCont>
-      <EditComment>
-        <CommentInfo>
-          <p className="username">{username}</p>
-          <p className="created">{new Date(createdAt).toLocaleDateString()}</p>
-        </CommentInfo>
-        {isEdit ? (
-          <SButton onClick={onEdit}>완료</SButton>
-        ) : (
-          <SButton onClick={() => setIsEdit(true)}>수정</SButton>
-        )}
-        <SButton onClick={handleDelete}>삭제</SButton>
-      </EditComment>
-      {isEdit ? <textarea defaultValue={comment} ref={editComment} /> : <div>{comment}</div>}
-    </CommentCont>
-  );
-};
-
-const SubmitForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  margin-top: 50px;
-  margin-bottom: 15px;
-  row-gap: 5px;
-  box-shadow: 0px 0px 4px grey;
-
-  & > .id {
-  }
-`;
-
-const InputForm = styled.div`
-  display: grid;
-  align-items: center;
-  row-gap: 5px;
-
-  & > label {
-    font-size: 0.9rem;
-    margin-right: 5px;
-  }
-
-  & > input {
-    height: 30px;
-  }
-`;
-
-const SubmitButton = styled(SButton)`
-  display: flex;
-  background-color: #3191ff;
-  border: 1px solid #3191ff;
-  font-size: 1rem;
-  width: 80px;
-  height: 28px;
-  margin-left: auto;
-  margin-top: 5px;
-
-  &:hover {
-    color: #3191ff;
-  }
-`;
-
-const NoComment = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
-
-  font-size: 1.5rem;
-  font-weight: bold;
-  font-style: italic;
-  color: #5e5e5e;
-`;
 
 const Comments = ({ id, comment, setComment }) => {
   const username = useRef(null);
@@ -177,7 +95,6 @@ const Comments = ({ id, comment, setComment }) => {
       console.log("전송 실패");
     }
   };
-
 
   return (
     <section>
