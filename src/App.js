@@ -10,7 +10,6 @@ const N = 14;
 function App() {
   const [images, setImages] = useState(new Array(N).fill(0).map((_, i) => i));
   const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
   const id = useRef(0);
   const bottom = useRef();
 
@@ -38,8 +37,6 @@ function App() {
 
     (async () => {
       try {
-        // 
-        // "http://localhost:3001/blogs"
         const req = await fetch(`https://api.pexels.com/v1/curated/?page=${currentPage}`, {
           method: "GET",
           headers: {
@@ -54,7 +51,6 @@ function App() {
 
           return [...sliced, ...res.photos]
         });
-        // setIsLoading(false);
       }
       catch (err) {
         if (controller.signal.aborted) {
@@ -64,6 +60,8 @@ function App() {
         }
       }
     })();
+
+    console.log(images);
 
     return () => controller.abort();
   }, [currentPage])
@@ -80,10 +78,3 @@ function App() {
 }
 
 export default App;
-
-
-/* 
-{isLoading ? images.map((_, i) => <ImageSkel key={i} />) :
-          images.map((pic) => <Image {...pic} width={"auto"} height={"auto"} setOpenModal={setOpenModal} key={pic.id} />)
-        }
-         */
