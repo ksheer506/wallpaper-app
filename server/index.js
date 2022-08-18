@@ -26,9 +26,9 @@ app.use((req, res, next) => {
     next();
 })
 
-app.get('/comments/:picID', controllers.getComments);
-app.post('/comments/:picID', controllers.addComments);
-app.patch('/comments/:picID', controllers.editComments);
+app.get('/pictures/:picID', controllers.getComments);
+app.post('/pictures/:picID', controllers.addComments);
+app.patch('/pictures/:picID', controllers.editComments);
 app.post('/login', controllers.login);
 /* app.post('/logout', controllers.logout);
 app.get('/userinfo', controllers.userInfo); */
