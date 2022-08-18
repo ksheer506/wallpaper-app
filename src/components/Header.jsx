@@ -1,5 +1,6 @@
-import styled from "styled-components"
-import Login from "./Login";
+import styled from "styled-components";
+import { useAuth } from "../AuthContext";
+import Login from "./Auth/Login";
 import useModal from "./Modal/useModal";
 
 const StyledHead = styled.header`
@@ -13,7 +14,7 @@ const StyledHead = styled.header`
   box-shadow: 0px 3px 10px #e6e6e6;
   margin-bottom: 15px;
   z-index: 1;
-`
+`;
 
 const SButton = styled.button`
   position: absolute;
@@ -29,12 +30,18 @@ const SButton = styled.button`
 `;
 
 export default function Header() {
-  const openModal = useModal();
+  const openModal = useModal(300, 300);
+  const { auth } = useAuth();
 
   return (
     <StyledHead>
       <h1>WallPaper</h1>
-      <SButton onClick={() => openModal(<Login />)}>로그인</SButton>
+      <p>{auth.status.toString()}</p>
+      {auth.status ? (
+        <SButton>로그아웃</SButton>
+      ) : (
+        <SButton onClick={() => openModal(<Login />)}>로그인</SButton>
+      )}
     </StyledHead>
   );
 }
